@@ -1,0 +1,13 @@
+export * from './shared/Result';
+export * from './errors';
+export { PitchClass } from './note/PitchClass';
+export type { AccidentalPreference } from './note/Accidental';
+export { Accidental } from './note/Accidental';
+export { Note } from './note/Note';
+export { NoteFactory } from './note/NoteFactory';
+export { ScaleParser } from './note/ScaleParser';
+export { Interval } from './interval/Interval';
+export type { IntervalDirection } from './interval/Interval';
+export { TranspositionService } from './transposition/TranspositionService';
+export type { NamingConvention, NoteNamingStrategy } from './naming/NoteNamingStrategy';
+export { NamingStrategyFactory } from './naming/NamingStrategyFactory';

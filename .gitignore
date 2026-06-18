@@ -1,0 +1,16 @@
+node_modules
+dist
+dist-ssr
+coverage
+*.local
+
+# Cache buildu TypeScript
+*.tsbuildinfo
+
+# Editor / OS
+.DS_Store
+.idea
+.vscode/*
+!.vscode/extensions.json
+*.log
+npm-debug.log*
