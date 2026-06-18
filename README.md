@@ -6,6 +6,11 @@ Narzędzie do transpozycji dźwięków gamy o zadaną liczbę półtonów.
 
 ## Demo
 
+[![Demo aplikacji – kliknij, aby odtworzyć](assets/demo-thumbnail.png)](video.webm)
+
+> Kliknij miniaturę powyżej, aby odtworzyć nagranie (`video.webm`).
+> W przeglądarce / na GitHubie film osadza się też bezpośrednio:
+
 <video src="video.webm" controls width="640">
   Twoja przeglądarka nie obsługuje odtwarzania wideo —
   <a href="video.webm">pobierz nagranie</a>.
