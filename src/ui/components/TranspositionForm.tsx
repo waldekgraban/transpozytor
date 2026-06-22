@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import type { NamingConvention } from '../../domain';
 
 export interface TranspositionFormProps {
@@ -16,58 +17,62 @@ const CONVENTION_LABELS: Record<NamingConvention, string> = {
   flat: 'Bemole (b)',
 };
 
-export function TranspositionForm({
-  rawNotes,
-  semitones,
-  convention,
-  conventions,
-  onRawNotesChange,
-  onSemitonesChange,
-  onConventionChange,
-  onSubmit,
-}: TranspositionFormProps): JSX.Element {
-  return (
-    <form
-      className="form"
-      onSubmit={(event) => {
-        event.preventDefault();
-        onSubmit();
-      }}
-    >
-      <label className="field">
-        <span>Dźwięki gamy</span>
-        <input
-          type="text"
-          value={rawNotes}
-          placeholder="np. C, D, E, F"
-          onChange={(event) => onRawNotesChange(event.target.value)}
-        />
-      </label>
+export const TranspositionForm = memo(
+  ({
+    rawNotes,
+    semitones,
+    convention,
+    conventions,
+    onRawNotesChange,
+    onSemitonesChange,
+    onConventionChange,
+    onSubmit,
+  }: TranspositionFormProps) => {
+    return (
+      <form
+        className="form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          onSubmit();
+        }}
+      >
+        <label className="field">
+          <span>Dźwięki gamy</span>
+          <input
+            type="text"
+            value={rawNotes}
+            placeholder="np. C, D, E, F"
+            onChange={(event) => onRawNotesChange(event.target.value)}
+          />
+        </label>
 
-      <label className="field">
-        <span>Przesunięcie (półtony)</span>
-        <input
-          type="number"
-          value={semitones}
-          onChange={(event) => onSemitonesChange(Number(event.target.value))}
-        />
-      </label>
+        <label className="field">
+          <span>Przesunięcie (półtony)</span>
+          <input
+            type="number"
+            value={semitones}
+            onChange={(event) => onSemitonesChange(Number(event.target.value))}
+          />
+        </label>
 
-      <label className="field">
-        <span>Konwencja zapisu</span>
-        <select
-          value={convention}
-          onChange={(event) => onConventionChange(event.target.value as NamingConvention)}
-        >
-          {conventions.map((option) => (
-            <option key={option} value={option}>
-              {CONVENTION_LABELS[option]}
-            </option>
-          ))}
-        </select>
-      </label>
+        <label className="field">
+          <span>Konwencja zapisu</span>
+          <select
+            value={convention}
+            onChange={(event) => onConventionChange(event.target.value as NamingConvention)}
+          >
+            {conventions.map((option) => (
+              <option key={option} value={option}>
+                {CONVENTION_LABELS[option]}
+              </option>
+            ))}
+          </select>
+        </label>
 
-      <button type="submit">Transponuj</button>
-    </form>
-  );
-}
+        <button type="submit">Transponuj</button>
+      </form>
+    );
+  },
+);
+
+TranspositionForm.displayName = 'TranspositionForm';

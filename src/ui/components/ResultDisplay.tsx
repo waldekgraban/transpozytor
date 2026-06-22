@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import type { TransposeScaleResult } from '../../application/TransposeScaleUseCase';
 
 export interface ResultDisplayProps {
@@ -5,7 +6,7 @@ export interface ResultDisplayProps {
   readonly errorMessage: string | null;
 }
 
-export function ResultDisplay({ result, errorMessage }: ResultDisplayProps): JSX.Element | null {
+export const ResultDisplay = memo(({ result, errorMessage }: ResultDisplayProps) => {
   if (errorMessage !== null) {
     return (
       <p className="result result--error" role="alert">
@@ -34,4 +35,6 @@ export function ResultDisplay({ result, errorMessage }: ResultDisplayProps): JSX
       </p>
     </section>
   );
-}
+});
+
+ResultDisplay.displayName = 'ResultDisplay';

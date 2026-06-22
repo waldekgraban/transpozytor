@@ -1,10 +1,10 @@
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { TransposerApp } from './components/TransposerApp';
 
-export function App(): JSX.Element {
+export const App = () => {
   return (
     <ErrorBoundary>
       <TransposerApp />
     </ErrorBoundary>
   );
-}
+};

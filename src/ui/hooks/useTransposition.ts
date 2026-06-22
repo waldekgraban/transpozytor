@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import {
   TransposeScaleUseCase,
   type TransposeScaleResult,
@@ -28,14 +28,14 @@ const INITIAL_STATE: TranspositionViewState = {
   error: null,
 };
 
+const defaultUseCase = new TransposeScaleUseCase();
+
 /**
  * @param useCase wstrzykiwalny use case (ułatwia testowanie/izolację).
  */
 export function useTransposition(
-  useCase: TransposeScaleUseCase = new TransposeScaleUseCase(),
+  useCase: TransposeScaleUseCase = defaultUseCase,
 ): UseTranspositionApi {
-  const stableUseCase = useMemo(() => useCase, [useCase]);
-
   const [state, setState] = useState<TranspositionViewState>(INITIAL_STATE);
 
   const setRawNotes = useCallback((rawNotes: string) => {
@@ -52,7 +52,7 @@ export function useTransposition(
 
   const transpose = useCallback(() => {
     setState((prev) => {
-      const outcome = stableUseCase.execute({
+      const outcome = useCase.execute({
         rawNotes: prev.rawNotes,
         semitones: prev.semitones,
         convention: prev.convention,
@@ -62,7 +62,7 @@ export function useTransposition(
         ? { ...prev, result: null, error: outcome.error }
         : { ...prev, result: outcome.value, error: null };
     });
-  }, [stableUseCase]);
+  }, [useCase]);
 
   return { ...state, setRawNotes, setSemitones, setConvention, transpose };
 }
