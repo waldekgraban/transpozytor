@@ -4,9 +4,18 @@ import { useTransposition } from '../hooks/useTransposition';
 import { ResultDisplay } from './ResultDisplay';
 import { TranspositionForm } from './TranspositionForm';
 
-export function TransposerApp(): JSX.Element {
-  const { rawNotes, semitones, convention, result, error, setRawNotes, setSemitones, setConvention, transpose } =
-    useTransposition();
+export const TransposerApp = () => {
+  const {
+    rawNotes,
+    semitones,
+    convention,
+    result,
+    error,
+    setRawNotes,
+    setSemitones,
+    setConvention,
+    transpose,
+  } = useTransposition();
 
   const conventions = useMemo(() => NamingStrategyFactory.availableConventions(), []);
 
@@ -31,4 +40,4 @@ export function TransposerApp(): JSX.Element {
       <ResultDisplay result={result} errorMessage={error?.message ?? null} />
     </main>
   );
-}
+};

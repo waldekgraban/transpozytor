@@ -1,6 +1,7 @@
-export abstract class DomainError extends Error {
+import type { ErrorCode } from './ErrorCode';
 
-  public abstract readonly code: string;
+export abstract class DomainError extends Error {
+  public abstract readonly code: ErrorCode;
 
   protected constructor(message: string) {
     super(message);
@@ -9,5 +10,4 @@ export abstract class DomainError extends Error {
   }
 }
 
-export const isDomainError = (value: unknown): value is DomainError =>
-  value instanceof DomainError;
+export const isDomainError = (value: unknown): value is DomainError => value instanceof DomainError;
